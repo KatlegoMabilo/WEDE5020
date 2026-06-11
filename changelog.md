@@ -1,4 +1,4 @@
-## added
-## changed
-## fixed
-## removed
+## Added
+## Changed
+## Fixed
+## Removed
