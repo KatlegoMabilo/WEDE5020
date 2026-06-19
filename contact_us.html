@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO TITLE -->
+    <title>KatClaws | Book appointments</title>
+
+    <!-- SEO DESCRIPTION -->
+    <meta name="description" content="KatClaws is a professional nail salon in Kuruman offering manicure, pedicure, nail art, and beauty services for all ages. Book your appointment online.">
+
+    <!-- SEO KEYWORDS -->
+    <meta name="keywords" content="nail salon Kuruman, manicure, pedicure, nail art, beauty salon South Africa, KatClaws, nails design">
+
+    <link rel="stylesheet" href="css_assets/mystyles.css">
+</head>
+<body>
+    <header>
+        <img src="images/Kats-Claws-Logo.png" alt="KatClaws professional nail salon logo in Kuruman">a place of relaxation and beauty
+    <nav>
+        <ul class="navigation">
+        <li ><a href="index.html">Home</a>
+        </li>
+        <li> <a href="about.html">About</a>
+        </li>
+        <li > <a href="enquiries.html">Enquiries</a>
+        </li>
+        <li > <a href="products.html">Products</a>
+        </li>
+        <li > <a href="contact_us.html">Contact</a>
+        </li>
+        </ul>
+    </nav>
+</header> 
+<main >
+    <!--a calender that will display open days and appointment bookings-->
+    <br>
+    <br>
+   <center><p class="p1">See available slots to book your appointments </p> </center>
+   <br>
+   <br>
+    <h3>Available Bookings Calendar</h3>
+    <div id="calender"></div>
+    <h3>Book an Appointment</h3>
+     <form action="bookingForm">
+        <label> Select Date:</label><br><br>
+        <input type="date" id="bookingDate" required>
+        <br><br>
+        <button type="submit">Book Appointment</button>
+     </form>
+     <p id="bookingMessage"></p>
+</main>
+<footer>
+    <div>
+        <p>katclaws&copy;&trade; 2026</p>
+    </div>
+</footer>  
+<script>
+// store booked dates in browser memory
+let bookedDates = JSON.parse(localStorage.getItem("bookedDates")) || [];
+
+// display calendar
+function renderCalendar() {
+    const calendar = document.getElementById("calendar");
+    calendar.innerHTML = "";
+
+    let today = new Date();
+    let month = today.getMonth();
+    let year = today.getFullYear();
+
+    let daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    for(let i = 1; i <= daysInMonth; i++) {
+
+        let dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`;
+
+        let day = document.createElement("div");
+        day.textContent = i;
+
+        day.style.display = "inline-block";
+        day.style.width = "50px";
+        day.style.margin = "5px";
+        day.style.padding = "10px";
+        day.style.textAlign = "center";
+        day.style.border = "1px solid black";
+        day.style.cursor = "pointer";
+
+        // if booked → make it pink
+        if(bookedDates.includes(dateStr)) {
+            day.style.backgroundColor = "hotpink";
+            day.style.color = "white";
+            day.textContent = i + " ✖";
+        }
+
+        calendar.appendChild(day);
+    }
+}
+
+// run calendar on load
+renderCalendar();
+
+// booking system
+document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let date = document.getElementById("bookingDate").value;
+
+    if(!date) {
+        alert("Please select a date");
+        return;
+    }
+
+    if(bookedDates.includes(date)) {
+        document.getElementById("bookingMessage").textContent =
+        "❌ This date is already booked";
+        return;
+    }
+
+    bookedDates.push(date);
+    localStorage.setItem("bookedDates", JSON.stringify(bookedDates));
+
+    document.getElementById("bookingMessage").textContent =
+    "✅ Booking successful!";
+
+    renderCalendar();
+});
+</script>
+</body>
+</html>

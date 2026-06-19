@@ -1,0 +1,24 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("commentForm");
+
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let commentInput = document.getElementById("comment");
+        let commentText = commentInput.value;
+
+        if (commentText.trim() === "") {
+            alert("Please write a comment before submitting.");
+            return;
+        }
+
+        let commentBox = document.createElement("p");
+        commentBox.textContent = "💅 " + commentText;
+
+        document.getElementById("commentList").appendChild(commentBox);
+
+        commentInput.value = "";
+    });
+});

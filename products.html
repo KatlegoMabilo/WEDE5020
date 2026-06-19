@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO TITLE -->
+    <title>KatClaws | Nail Products and Services</title>
+
+    <!-- SEO DESCRIPTION -->
+    <meta name="description" content="KatClaws is a professional nail salon in Kuruman offering manicure, pedicure, nail art, and beauty services for all ages. Book your appointment online.">
+
+    <!-- SEO KEYWORDS -->
+    <meta name="keywords" content="nail salon Kuruman, manicure, pedicure, nail art, beauty salon South Africa, KatClaws, nails design">
+
+    <link rel="stylesheet" href="css_assets/mystyles.css">
+</head>
+<body>
+     <header>
+        <img src="images/Kats-Claws-Logo.png" alt="KatClaws professional nail salon logo in Kuruman">a place of relaxation and beauty
+    <nav>
+        <ul class="navigation">
+        <li style="display: inline;">
+            <a href="index.html">Home</a>
+        </li>
+        <li style="display: inline;">
+            <a href="about.html">About</a>
+        </li>
+        <li style="display: inline;">
+            <a href="enquiries.html">Enquiries</a>
+        </li>
+        <li style="display: inline;">
+            <a href="products.html">Products</a>
+        </li>
+        <li style="display: inline;"> 
+            <a href="contact_us.html">Contact</a>
+        </li>
+        </ul>
+    </nav>
+</header> 
+<main>
+    <!--the business services including their prices -->
+    <p class="p1">This company provides a varity of services
+        <ul class="main">
+            <li>spa - R300 per person</li>
+            <li>Buff and shine - R100</li>
+            <li>plain nails - R200</li>
+            <li>designs - R10 per nail</li>
+            <li>toes art - R150</li>
+            <li>plain toes - R50</li>
+            <li>family spa package - R800 (include 4 members only) </li>
+        </ul>
+    </p>
+    <h3>Search Products</h3>
+<input type="text" id="searchBox" placeholder="Search nails, manicure, pedicure..." />
+<div class="product">
+    <h4>Manicure Set</h4>
+    <p>Nail care tools for professional results</p>
+</div>
+
+<div class="product">
+    <h4>Pedicure Kit</h4>
+    <p>Complete foot care and treatment set</p>
+</div>
+
+<div class="product">
+    <h4>Nail Polish Pink</h4>
+    <p>Long lasting glossy pink polish</p>
+</div>
+</main>
+<footer>
+    <div>
+        <p>KatClaws &copy;&trade; 2026</p>
+    </div>
+</footer> 
+ <script>
+const searchBox = document.getElementById("searchBox");
+
+searchBox.addEventListener("keyup", function() {
+    let filter = searchBox.value.toLowerCase();
+    let products = document.querySelectorAll(".product");
+
+    products.forEach(function(product) {
+        let text = product.textContent.toLowerCase();
+
+        if(text.includes(filter)) {
+            product.style.display = "block";
+        } else {
+            product.style.display = "none";
+        }
+    });
+});
+</script>
+</body>
+</html>
